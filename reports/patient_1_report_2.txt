@@ -1,0 +1,24 @@
+PATIENT INFORMATION
+-------------------
+Patient ID: 10
+Name: John Doe
+Age/Gender: 30 Years / Male
+Date: August 23, 2026
+Lab ID: #987654
+
+COMPLETE BLOOD COUNT (CBC) RESULTS
+----------------------------------
+Test Name                      Result      Reference Range     Unit
+-------------------------------------------------------------------
+Hemoglobin (Hb)                14.5        13.5 - 17.5         g/dL
+Red Blood Cell (RBC) Count     5.0         4.5 - 5.9           million/uL
+Packed Cell Volume (PCV)       45          40 - 52             %
+Mean Corpuscular Volume (MCV)  90          80 - 100            fL
+White Blood Cell (WBC) Count   7.2         4.0 - 11.0          10^3/uL
+Neutrophils                    60          40 - 70             %
+Lymphocytes                    30          20 - 40             %
+Eosinophils                    3           1 - 6               %
+Monocytes                      5           2 - 10              %
+Basophils                      2           0 - 2               %
+Platelet Count                 250,000     150,000 - 450,000   /uL
+-------------------------------------------------------------------

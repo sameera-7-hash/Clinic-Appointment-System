@@ -1,0 +1,6 @@
+{
+  "installCommand": "cd \"OOPS frontend\" && npm install",
+  "buildCommand": "cd \"OOPS frontend\" && npm run build",
+  "outputDirectory": "OOPS frontend/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

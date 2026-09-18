@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { login as loginApi, signup as signupApi } from "../Services/api";
+import Reveal from "../components/Reveal";
 
 function Login({ role, onAuthenticated, onBack }) {
 
@@ -101,7 +102,7 @@ function Login({ role, onAuthenticated, onBack }) {
         </div>
 
 
-        <div className="login-form-container">
+        <Reveal as="div" className="login-form-container">
 
           <div className="role-login-icon">
             {getRoleIcon()}
@@ -293,7 +294,7 @@ function Login({ role, onAuthenticated, onBack }) {
 
           </div>
 
-        </div>
+        </Reveal>
 
       </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Reveal from "../components/Reveal";
 
 function RoleSelection({ onSelectRole, onBack }) {
   return (
@@ -46,7 +47,7 @@ function RoleSelection({ onSelectRole, onBack }) {
 
         <div className="role-cards">
 
-          <div className="role-card">
+          <Reveal delay={0} className="role-card">
 
             <div className="role-icon patient-role-icon">
               👤
@@ -64,10 +65,10 @@ function RoleSelection({ onSelectRole, onBack }) {
               Continue as Patient →
             </button>
 
-          </div>
+          </Reveal>
 
 
-          <div className="role-card">
+          <Reveal delay={110} className="role-card">
 
             <div className="role-icon doctor-role-icon">
               ⚕
@@ -85,10 +86,10 @@ function RoleSelection({ onSelectRole, onBack }) {
               Continue as Doctor →
             </button>
 
-          </div>
+          </Reveal>
 
 
-          <div className="role-card">
+          <Reveal delay={220} className="role-card">
 
             <div className="role-icon nurse-role-icon">
               ✚
@@ -106,14 +107,14 @@ function RoleSelection({ onSelectRole, onBack }) {
               Continue as Nurse →
             </button>
 
-          </div>
+          </Reveal>
 
         </div>
 
 
         <div className="role-security">
 
-          <div className="security-item">
+          <Reveal delay={0} className="security-item">
 
             <div className="security-icon">
               🔐
@@ -124,10 +125,10 @@ function RoleSelection({ onSelectRole, onBack }) {
               <p>Your data is protected</p>
             </div>
 
-          </div>
+          </Reveal>
 
 
-          <div className="security-item">
+          <Reveal delay={80} className="security-item">
 
             <div className="security-icon">
               🛡
@@ -138,10 +139,10 @@ function RoleSelection({ onSelectRole, onBack }) {
               <p>Tamper-evident records</p>
             </div>
 
-          </div>
+          </Reveal>
 
 
-          <div className="security-item">
+          <Reveal delay={160} className="security-item">
 
             <div className="security-icon">
               💾
@@ -152,7 +153,7 @@ function RoleSelection({ onSelectRole, onBack }) {
               <p>Always have a backup</p>
             </div>
 
-          </div>
+          </Reveal>
 
         </div>
 

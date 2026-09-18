@@ -5230,4 +5230,356 @@ button:active {
 :root[data-theme="dark"] .notification-toggle:hover {
   background: rgba(185, 237, 85, 0.22);
 }
+
+
+/* =========================================================
+   SCROLL / MOUNT REVEAL (Reveal.jsx) + FLOATING BOB
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-card,
+.login-floating-card {
+  animation: floatY 4.2s ease-in-out infinite;
+}
+
+.floating-card.card-two,
+.login-floating-card.encrypted-card {
+  animation-delay: 1.2s;
+}
+
+.floating-card.card-three,
+.login-floating-card.trusted-card {
+  animation-delay: 2.4s;
+}
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 20px 45px rgba(0,0,0,0.2), 0 0 0 0 rgba(185, 237, 85, 0.35); }
+  70% { box-shadow: 0 20px 45px rgba(0,0,0,0.2), 0 0 0 18px rgba(185, 237, 85, 0); }
+  100% { box-shadow: 0 20px 45px rgba(0,0,0,0.2), 0 0 0 0 rgba(185, 237, 85, 0); }
+}
+
+.illustration-circle,
+.doctor-circle {
+  animation: pulseRing 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .floating-card,
+  .login-floating-card,
+  .illustration-circle,
+  .doctor-circle {
+    animation: none;
+  }
+}
+
+
+/* =========================================================
+   TRANSLUCENT STICKY HEADERS + SIDEBARS
+   (same brand hue, just glassy + pinned while scrolling)
+   ========================================================= */
+
+.home-header,
+.role-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.home-header {
+  background: rgba(7, 91, 70, 0.78);
+}
+
+.role-header {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.home-nav a {
+  color: white;
+  font-size: 11px;
+  text-decoration: none;
+  opacity: 0.9;
+  position: relative;
+}
+
+.home-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -6px;
+  height: 2px;
+  background: #b9ed55;
+  transition: right 0.25s ease;
+}
+
+.home-nav a:hover {
+  opacity: 1;
+}
+
+.home-nav a:hover::after {
+  right: 0;
+}
+
+.dashboard-header,
+.patient-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  background: rgba(7, 91, 70, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.patient-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(0, 99, 79, 0.92) 0%, rgba(0, 85, 66, 0.92) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+:root[data-theme="dark"] .role-header,
+:root[data-theme="dark"] .dashboard-header,
+:root[data-theme="dark"] .patient-topbar {
+  background: rgba(15, 26, 22, 0.72);
+}
+
+
+/* =========================================================
+   HOME -- "ABOUT THIS PROJECT" + FEATURES GRID
+   ========================================================= */
+
+.home-about {
+  padding: 60px 8%;
+  background: #f4f7f5;
+}
+
+.home-about-text {
+  max-width: 780px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.home-eyebrow {
+  display: inline-block;
+  color: #08745b;
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.home-about-text h2 {
+  font-size: 26px;
+  color: #12352d;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.home-about-text p {
+  color: #52625b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.home-stats-row {
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.home-stat {
+  text-align: center;
+  background: white;
+  border: 1px solid #dfe6e2;
+  border-radius: 12px;
+  padding: 16px 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 50, 35, 0.08);
+}
+
+.home-stat strong {
+  display: block;
+  font-size: 20px;
+  color: #075b46;
+}
+
+.home-stat span {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  color: #718078;
+}
+
+.home-features {
+  padding: 60px 8%;
+  background: white;
+}
+
+.home-features-heading {
+  text-align: center;
+  font-size: 24px;
+  color: #12352d;
+  margin-bottom: 32px;
+}
+
+.home-features-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.home-feature-card {
+  border: 1px solid #dfe6e2;
+  border-radius: 14px;
+  padding: 22px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 50, 35, 0.1);
+  border-color: #b9ed55;
+}
+
+.home-feature-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #eef6f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+  transition: transform 0.2s ease;
+}
+
+.home-feature-card:hover .home-feature-icon {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.home-feature-card h3 {
+  font-size: 13px;
+  color: #12352d;
+  margin-bottom: 6px;
+}
+
+.home-feature-card p {
+  font-size: 11px;
+  color: #718078;
+  line-height: 1.6;
+}
+
+:root[data-theme="dark"] .home-about {
+  background: #0f1a16;
+}
+
+:root[data-theme="dark"] .home-features {
+  background: #17251f;
+}
+
+:root[data-theme="dark"] .home-about-text h2,
+:root[data-theme="dark"] .home-features-heading {
+  color: #f2f8f5;
+}
+
+:root[data-theme="dark"] .home-about-text p,
+:root[data-theme="dark"] .home-feature-card p,
+:root[data-theme="dark"] .home-stat span {
+  color: #9db3a8;
+}
+
+:root[data-theme="dark"] .home-stat,
+:root[data-theme="dark"] .home-feature-card {
+  background: #1c2f27;
+  border-color: #2c4136;
+}
+
+@media (max-width: 900px) {
+  .home-stats-row,
+  .home-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .home-stats-row,
+  .home-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   INTERACTIVE POLISH -- input focus ring, sidebar item glide
+   ========================================================= */
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #075b46;
+  box-shadow: 0 0 0 3px rgba(185, 237, 85, 0.35);
+}
+
+:root[data-theme="dark"] input:focus,
+:root[data-theme="dark"] select:focus,
+:root[data-theme="dark"] textarea:focus {
+  box-shadow: 0 0 0 3px rgba(185, 237, 85, 0.25);
+}
+
+.sidebar-item,
+.patient-nav-item {
+  transition: background 0.15s ease, transform 0.15s ease, padding-left 0.15s ease;
+}
+
+.sidebar-item:hover,
+.patient-nav-item:hover {
+  padding-left: 16px;
+}
 }

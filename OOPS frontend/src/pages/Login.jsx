@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { login as loginApi, signup as signupApi } from "../Services/api";
 import Reveal from "../components/Reveal";
+import { Tabs, TabsList, TabsTrigger } from "../components/ui/Tabs";
 
 function Login({ role, onAuthenticated, onBack }) {
 
@@ -123,22 +124,16 @@ function Login({ role, onAuthenticated, onBack }) {
             {getDescription()}
           </p>
 
-          <div className="auth-tabs">
-            <button
-              type="button"
-              className={mode === "login" ? "auth-tab active" : "auth-tab"}
-              onClick={() => { setMode("login"); setError(""); }}
-            >
-              Login
-            </button>
-            <button
-              type="button"
-              className={mode === "signup" ? "auth-tab active" : "auth-tab"}
-              onClick={() => { setMode("signup"); setError(""); }}
-            >
-              Create Account
-            </button>
-          </div>
+          <Tabs
+            value={mode}
+            onValueChange={(next) => { setMode(next); setError(""); }}
+            className="mb-4 mt-3.5"
+          >
+            <TabsList>
+              <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsTrigger value="signup">Create Account</TabsTrigger>
+            </TabsList>
+          </Tabs>
 
 
           <form onSubmit={handleSubmit}>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getNotifications, markNotificationRead } from "../Services/api";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel } from "./ui/DropdownMenu";
+import { cn } from "../lib/cn";
 
 // Reminder bell for the top bar. Polls /api/notifications for the current
 // role/user every 15s (appointment booking is what creates these, see
 // pushNotification() in main.cpp) and lets the viewer mark one read.
 function NotificationBell({ role, userId }) {
   const [items, setItems] = useState([]);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!role) return;
@@ -36,41 +37,33 @@ function NotificationBell({ role, userId }) {
   };
 
   return (
-    <div className="notification-bell">
-      <button
-        type="button"
-        className="icon-btn notification-toggle"
-        onClick={() => setOpen((o) => !o)}
-      >
-        🔔
-        {unread > 0 && <span className="notification-badge">{unread}</span>}
-      </button>
+    <DropdownMenu
+      trigger={
+        <button type="button" className="icon-btn notification-toggle">
+          🔔
+          {unread > 0 && <span className="notification-badge">{unread}</span>}
+        </button>
+      }
+    >
+      <DropdownMenuLabel>Reminders</DropdownMenuLabel>
 
-      {open && (
-        <>
-          <div className="notification-scrim" onClick={() => setOpen(false)} />
-          <div className="notification-dropdown">
-            <div className="notification-dropdown-header">Reminders</div>
-
-            {items.length === 0 && (
-              <p className="notification-empty">You're all caught up.</p>
-            )}
-
-            {items.map((n) => (
-              <button
-                type="button"
-                key={n.id}
-                className={`notification-item${n.read ? "" : " unread"}`}
-                onClick={() => dismiss(n.id)}
-              >
-                <p>{n.message}</p>
-                <small>{new Date(n.createdAt).toLocaleString()}</small>
-              </button>
-            ))}
-          </div>
-        </>
+      {items.length === 0 && (
+        <p className="px-3 py-3 text-xs text-muted">You're all caught up.</p>
       )}
-    </div>
+
+      {items.map((n) => (
+        <DropdownMenuItem
+          key={n.id}
+          onClick={() => dismiss(n.id)}
+          className={cn(!n.read && "bg-brand-green/5")}
+        >
+          <p className="text-ink">{n.message}</p>
+          <small className="mt-0.5 block text-[10px] text-muted">
+            {new Date(n.createdAt).toLocaleString()}
+          </small>
+        </DropdownMenuItem>
+      ))}
+    </DropdownMenu>
   );
 }
 

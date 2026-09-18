@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DoctorLayout } from "./DoctorDashboard";
 import { getPatients } from "../../Services/api";
+import { Badge } from "../../components/ui/Badge";
 
 function Patients({ navigate, logout }) {
 
@@ -120,9 +121,9 @@ function Patients({ navigate, logout }) {
                   <td>{patient.diagnosis}</td>
 
                   <td>
-                    <span className={`status ${patient.algo && patient.algo.startsWith("DES") ? "gray" : "green"}`}>
+                    <Badge variant={patient.algo && patient.algo.startsWith("DES") ? "warning" : "default"}>
                       {patient.algo}
-                    </span>
+                    </Badge>
                   </td>
 
                   <td>

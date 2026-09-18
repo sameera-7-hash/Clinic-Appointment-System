@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DoctorLayout } from "./DoctorDashboard";
 import { useCurrentUser } from "../../context/UserContext";
 import { getAvailability, setAvailability, getAppointments } from "../../Services/api";
+import { Badge } from "../../components/ui/Badge";
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -199,7 +200,7 @@ function Appointments({ navigate, logout }) {
                 <td>{a.time}</td>
                 <td>{a.patientName}</td>
                 <td>{a.reason || "—"}</td>
-                <td><span className="status green">{a.status}</span></td>
+                <td><Badge variant="success">{a.status}</Badge></td>
               </tr>
             ))}
 

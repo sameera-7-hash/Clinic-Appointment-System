@@ -2,6 +2,35 @@
    PATIENTCARE - COMPLETE APP.CSS
    ========================================================= */
 
+@import "tailwindcss";
+
+/* Tailwind v4 CSS-first theme: exposes the app's existing brand palette
+   as utility classes (bg-brand-green, text-brand-lime, border-border,
+   etc.) for the new components/ui primitives below, without touching
+   any of the hand-written CSS beneath it -- that CSS is untouched and
+   keeps working exactly as before. */
+@theme {
+  --color-brand-green: #075b46;
+  --color-brand-green-dark: #054334;
+  --color-brand-lime: #b9ed55;
+  --color-ink: #12352d;
+  --color-muted: #718078;
+  --color-border: #dfe6e2;
+  --color-surface: #ffffff;
+  --color-bg: #f4f7f5;
+  --color-danger: #d12e2e;
+  --color-dark-bg: #0f1a16;
+  --color-dark-surface: #17251f;
+  --color-dark-border: #2c4136;
+  --color-dark-ink: #e7f1ec;
+  --radius-card: 0.75rem;
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -4263,31 +4292,6 @@ button {
 }
 
 
-.appointment-status {
-  display: inline-block;
-
-  padding: 4px 9px;
-
-  border-radius: 20px;
-
-  font-size: 7px;
-
-  font-weight: bold;
-}
-
-
-.appointment-status.confirmed {
-  background: #c9f3dc;
-
-  color: #087442;
-}
-
-
-.appointment-status.pending {
-  background: #ffe8ae;
-
-  color: #8a5c00;
-}
 
 
 .appointment-view-btn {
@@ -4857,11 +4861,6 @@ button:active {
   background: rgba(7, 91, 70, 0.16);
 }
 
-.notification-bell {
-  position: relative;
-  display: inline-flex;
-}
-
 .notification-badge {
   position: absolute;
   top: -2px;
@@ -4879,100 +4878,10 @@ button:active {
   justify-content: center;
 }
 
-.notification-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-}
-
-.notification-dropdown {
-  position: absolute;
-  top: 44px;
-  right: 0;
-  width: 300px;
-  max-height: 360px;
-  overflow-y: auto;
-  background: var(--surface, white);
-  border: 1px solid #dfe6e2;
-  border-radius: 10px;
-  box-shadow: 0 12px 28px rgba(0, 50, 35, 0.18);
-  z-index: 41;
-  padding: 6px;
-}
-
-.notification-dropdown-header {
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #6b7785;
-  padding: 8px 10px 4px;
-}
-
-.notification-empty {
-  padding: 14px 10px;
-  font-size: 12px;
-  color: #6b7785;
-}
-
-.notification-item {
-  display: block;
-  width: 100%;
-  text-align: left;
-  border: none;
-  background: transparent;
-  border-radius: 8px;
-  padding: 8px 10px;
-  margin-bottom: 2px;
-  cursor: pointer;
-}
-
-.notification-item:hover {
-  background: rgba(7, 91, 70, 0.06);
-}
-
-.notification-item.unread {
-  background: rgba(7, 91, 70, 0.08);
-}
-
-.notification-item p {
-  font-size: 12px;
-  color: inherit;
-  margin-bottom: 2px;
-}
-
-.notification-item small {
-  font-size: 10px;
-  color: #6b7785;
-}
-
 
 /* =========================================================
    AUTH TABS (Login / Create Account) + inline auth error
    ========================================================= */
-
-.auth-tabs {
-  display: flex;
-  gap: 8px;
-  margin: 14px 0 18px;
-}
-
-.auth-tabs .auth-tab {
-  flex: 1;
-  border: 1px solid #dfe6e2;
-  background: white;
-  color: #173a30;
-  padding: 9px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 11px;
-}
-
-.auth-tabs .auth-tab.active {
-  background: #075b46;
-  border-color: #075b46;
-  color: white;
-}
 
 .auth-error {
   background: #fef2f2;
@@ -5079,18 +4988,6 @@ button:active {
   border: 1px dashed #b9d9cb;
 }
 
-.booking-ask {
-  text-align: center;
-  padding: 10px 0 4px;
-}
-
-.booking-ask-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 12px;
-}
-
 .report-note {
   font-size: 11px;
   color: #6b7785;
@@ -5173,9 +5070,7 @@ button:active {
 :root[data-theme="dark"] .dashboard-header,
 :root[data-theme="dark"] .patient-topbar,
 :root[data-theme="dark"] .login-form-container,
-:root[data-theme="dark"] .role-card,
-:root[data-theme="dark"] .notification-dropdown,
-:root[data-theme="dark"] .auth-tabs .auth-tab {
+:root[data-theme="dark"] .role-card {
   background: #17251f;
   color: #e7f1ec;
   border-color: #24382f;

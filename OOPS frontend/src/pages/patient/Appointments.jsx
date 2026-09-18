@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import PatientLayout from "./PatientLayout";
 import { useCurrentUser } from "../../context/UserContext";
 import { getAppointments, getAvailability, bookAppointment } from "../../Services/api";
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "../../components/ui/Dialog";
+import { Button } from "../../components/ui/Button";
+import { Badge } from "../../components/ui/Badge";
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -106,17 +109,18 @@ function Appointments({ navigate, logout }) {
 
       </div>
 
-      {bookingStage === "asking" && (
-        <section className="panel booking-flow">
-          <div className="booking-ask">
-            <p><strong>Would you like to book an appointment?</strong></p>
-            <div className="booking-ask-buttons">
-              <button className="primary-button" onClick={() => setBookingStage("picking")}>Yes, book one</button>
-              <button className="small-button" onClick={cancelBooking}>No, not now</button>
-            </div>
-          </div>
-        </section>
-      )}
+      <Dialog open={bookingStage === "asking"} onClose={cancelBooking}>
+        <DialogHeader>
+          <DialogTitle>Would you like to book an appointment?</DialogTitle>
+          <DialogDescription>
+            You'll pick a date, then a doctor's open time slot, on the next step.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="outline" onClick={cancelBooking}>No, not now</Button>
+          <Button onClick={() => setBookingStage("picking")}>Yes, book one</Button>
+        </DialogFooter>
+      </Dialog>
 
       {bookingStage === "picking" && (
         <section className="panel booking-flow">
@@ -247,15 +251,9 @@ function AppointmentCard({
 
         <p>{specialty}</p>
 
-        <span
-          className={
-            status === "Pending"
-              ? "appointment-status pending"
-              : "appointment-status confirmed"
-          }
-        >
+        <Badge variant={status === "Pending" ? "warning" : "success"}>
           {status}
-        </span>
+        </Badge>
 
       </div>
 
